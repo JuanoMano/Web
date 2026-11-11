@@ -1,4 +1,3 @@
-
 import pandas as pd
 import plotly.express as px
 import streamlit as st
@@ -57,6 +56,7 @@ if hist_button:
     st.plotly_chart(fig, use_container_width=True)
 
 
+
 st.header("2. Precio vs. kilometraje")
 
 st.write(
@@ -64,21 +64,25 @@ st.write(
     "de un vehículo y su precio de venta."
 )
 
-fig_scatter = px.scatter(
-    car_data,
-    x="odometer",
-    y="price",
-    color="condition",
-    title="Relación entre precio y kilometraje",
-    labels={
-        "odometer": "Kilometraje (millas)",
-        "price": "Precio (USD)",
-        "condition": "Condición"
-    },
-    opacity=0.6
-)
+scatter_button = st.button("Construir gráfico de dispersión")
 
-st.plotly_chart(fig_scatter, use_container_width=True)
+if scatter_button:
+
+    fig_scatter = px.scatter(
+        car_data,
+        x="odometer",
+        y="price",
+        color="condition",
+        title="Relación entre precio y kilometraje",
+        labels={
+            "odometer": "Kilometraje (millas)",
+            "price": "Precio (USD)",
+            "condition": "Condición"
+        },
+        opacity=0.6
+    )
+
+    st.plotly_chart(fig_scatter, use_container_width=True)
 
 
 st.header("3. Análisis por tipo de vehículo")
